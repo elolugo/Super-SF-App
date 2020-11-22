@@ -1,0 +1,8 @@
+.image{
+    height: 100px;
+    width: 100px;
+}
+
+.selected{
+  background-color: rgba(194, 255, 252, 0.86);
+}

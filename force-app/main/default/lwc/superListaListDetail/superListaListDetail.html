@@ -1,0 +1,18 @@
+<template>
+
+    
+    <div class={productClass}>
+        <a onclick={tileClick}>
+            <lightning-layout vertical-align="center">
+                <lightning-layout-item size="8">
+                    <p>{producto.Producto__r.Name}</p>
+                </lightning-layout-item>
+                <lightning-layout-item size="4">
+                    <img src={producto.Producto__r.Image_URL__c} class="image"/>
+                </lightning-layout-item>
+            </lightning-layout>
+        </a>
+    </div>
+
+    
+</template>

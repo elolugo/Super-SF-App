@@ -43,8 +43,6 @@ export default class SuperListaProductDetail extends LightningElement {
         // Creates the event with the contact ID data.
         const clickedProductEvent = new CustomEvent('clickedproduct', { detail: productoId });
 
-        console.log('about to dispatch event', clickedProductEvent)
-
         // Dispatches the event.
         this.dispatchEvent(clickedProductEvent);
     }

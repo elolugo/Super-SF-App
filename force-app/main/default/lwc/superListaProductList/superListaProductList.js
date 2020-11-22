@@ -17,7 +17,7 @@ export default class SuperListaProductList extends LightningElement {
     get productos() {
         let productos = []
 
-        console.log('todos los productos', this.todosLosProductos.data)
+        //console.log('todos los productos', this.todosLosProductos.data)
         console.log('productos ya en lista', this.productosEnLista.data)
         if(this.todosLosProductos.data){
             for(var i = 0; i < this.todosLosProductos.data.length; i++){
@@ -34,15 +34,12 @@ export default class SuperListaProductList extends LightningElement {
                 }
                 productos.push({'producto':  producto, 'enLista': productoEnListaBandera})
             }
-            console.log('Los productos con inlist', productos)
         }
         return productos
     }
 
     handleClickedProductEvent(event){
-        console.log('hello from handler of event', event.detail)
         refreshApex(this.productosEnLista)
-        //search
     }
 
 }

@@ -1,7 +1,17 @@
 <template>
+
+  <template if:false={listaSuperId}>
+
     <lightning-card title="Lista de super" icon-name="custom:custom14">
       <div class="slds-m-around_medium">
         <lightning-button variant="brand" label="Crear Lista de Super" title="Primary action" onclick={handleClickCreateLista} class="slds-m-left_x-small"></lightning-button>
       </div>
     </lightning-card>
+
+  </template>
+
+  <template if:true={listaSuperId}>
+    <c-super-lista-product-list lista-super-id={listaSuperId}></c-super-lista-product-list>
+  </template>
+    
 </template>

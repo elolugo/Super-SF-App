@@ -1,7 +1,9 @@
 import { LightningElement } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
-import createListaDeSuper from '@salesforce/apex/ListaDeSuperController.createListaDeSuper';
+import createListaDeSuper from '@salesforce/apex/ListaSuperController.createListaSuper';
 export default class HelloWorld extends NavigationMixin(LightningElement) {
+
+    listaSuperId = null;
 
     handleClickCreateLista(event) {
         console.log('Crear lista apretado')
@@ -11,14 +13,8 @@ export default class HelloWorld extends NavigationMixin(LightningElement) {
             console.log("Lista de super created successfully")
             console.log(listaDeSuper)
 
-            this[NavigationMixin.Navigate]({
-                type: 'standard__recordPage',
-                attributes: {
-                    recordId: listaDeSuper.Id,
-                    objectApiName: 'Lista_Super__c',
-                    actionName: 'view'
-                }
-            });
+            this.listaSuperId = listaDeSuper.Id
+            console.log("El id de la lista de super es ", this.listaSuperId)
 
         })
         .catch(error => {

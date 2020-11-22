@@ -1,7 +1,7 @@
-public with sharing class ListaDeSuperController {
+public with sharing class ListaSuperController {
 
     @AuraEnabled()
-    public static Lista_Super__c createListaDeSuper() {
+    public static Lista_Super__c createListaSuper() {
 
         //maybe add validation for checking if a lista has already created today
         List<Lista_Super__c> listaDeSuperDeHoy = [SELECT Id, Name FROM Lista_Super__c WHERE CreatedDate = TODAY];

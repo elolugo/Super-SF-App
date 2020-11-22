@@ -1,0 +1,25 @@
+<template>
+
+    <lightning-card title="Lista de super" icon-name="custom:list">
+      <div class="slds-m-around_medium">
+        <lightning-layout multiple-rows="true">
+            <!--For each product, render a detail page-->
+            <template for:each={productos} for:item="producto">
+
+              <lightning-layout-item size="12" key={producto.producto.Id} >
+
+                <c-super-lista-product-detail 
+                    producto={producto.producto}
+                    esta-en-lista={producto.enLista}
+                    >
+
+                </c-super-lista-product-detail >
+
+              </lightning-layout-item>
+
+            </template>
+
+        </lightning-layout>
+      </div>
+    </lightning-card>
+</template>

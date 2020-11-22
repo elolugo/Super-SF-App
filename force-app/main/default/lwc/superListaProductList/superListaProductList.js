@@ -1,4 +1,5 @@
 import { api, wire, LightningElement } from 'lwc';
+import { refreshApex } from '@salesforce/apex';
 import getAllProductos from '@salesforce/apex/ProductoController.getAllProductos';
 import getProductsInListaSuper from '@salesforce/apex/ListaSuperProductoController.getProductsInListaSuper';
 
@@ -36,6 +37,12 @@ export default class SuperListaProductList extends LightningElement {
             console.log('Los productos con inlist', productos)
         }
         return productos
+    }
+
+    handleClickedProductEvent(event){
+        console.log('hello from handler of event', event.detail)
+        refreshApex(this.productosEnLista)
+        //search
     }
 
 }

@@ -1,6 +1,9 @@
 import { LightningElement,api } from 'lwc';
-
+import insertProductoInListaSuper from '@salesforce/apex/ListaSuperProductoController.insertProductoInListaSuper';
+import deleteProductoInListaSuper from '@salesforce/apex/ListaSuperProductoController.deleteProductoInListaSuper';
 export default class SuperListaProductDetail extends LightningElement {
+
+    @api listaSuperId;
 
     @api producto;
 
@@ -8,18 +11,42 @@ export default class SuperListaProductDetail extends LightningElement {
 
     get productClass() { 
         return this.estaEnLista ? 'slds-box selected' : 'slds-box';
-      }
+    }
 
     tileClick() {
-        /*
-        const event = new CustomEvent('tileclick', {
-            // detail contains only primitives
-            detail: this.product.fields.Id.value
-        });
-        // Fire the event from c-tile
-        this.dispatchEvent(event);
-        */
 
+        console.log('clicked',this.producto)
         
+        if(this.estaEnLista){
+            deleteProductoInListaSuper({listaSuperId: this.listaSuperId, productoId: this.producto.Id})
+            .then(result => {
+                console.log('Se hizo click y se borro en la lista', result)
+                this.changeInListStatus(this.producto.Id)
+            })
+            .catch(error => {
+                console.log('Se hizo click y hubo un error al borrar', error)
+            });
+        }else{
+            insertProductoInListaSuper({listaSuperId: this.listaSuperId, productoId: this.producto.Id})
+            .then(result => {
+                console.log('Se hizo click y se guardo en la lista', result)
+                this.changeInListStatus(this.producto.Id)
+            })
+            .catch(error => {
+                console.log('Se hizo click y hubo un error al guardar', error)
+            });
+        }
     }
+
+    changeInListStatus(productoId){
+        
+        // Creates the event with the contact ID data.
+        const clickedProductEvent = new CustomEvent('clickedproduct', { detail: productoId });
+
+        console.log('about to dispatch event', clickedProductEvent)
+
+        // Dispatches the event.
+        this.dispatchEvent(clickedProductEvent);
+    }
+
 }
